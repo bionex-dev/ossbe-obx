@@ -1,0 +1,11 @@
+@use "variables" as *;
+
+@mixin up($bp) {
+  @media (min-width: $bp) { @content; }
+}
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) { &:hover { @content; } }
+}
+@mixin focus-ring {
+  &:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 3px; }
+}

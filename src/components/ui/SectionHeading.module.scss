@@ -1,0 +1,5 @@
+.wrap { display: grid; gap: 16px; max-width: 640px; }
+.center { margin-inline: auto; text-align: center; justify-items: center; }
+.text { color: var(--c-muted); }
+.dark h2 { color: #fff; }
+.dark .text { color: var(--c-on-dark-muted); }

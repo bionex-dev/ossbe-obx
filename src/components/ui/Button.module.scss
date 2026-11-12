@@ -1,0 +1,31 @@
+@use "../../styles/mixins" as *;
+
+.btn {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid transparent;
+  font-family: var(--f-display); font-weight: 700; font-size: .9375rem; letter-spacing: -0.005em;
+  white-space: nowrap; overflow: hidden; isolation: isolate;
+  transition: transform .25s var(--ease), background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+  @include focus-ring;
+  &:active { transform: scale(.97); }
+  svg { width: 18px; height: 18px; flex: none; transition: transform .3s var(--ease); }
+  @include hover { svg:last-child { transform: translateX(3px); } }
+}
+.primary {
+  background: var(--c-primary); color: #fff; box-shadow: 0 8px 20px -8px rgb(44 91 140 / .6);
+  @include hover { background: var(--c-primary-hover); box-shadow: 0 12px 28px -10px rgb(44 91 140 / .7); }
+}
+.light {
+  background: #fff; color: var(--c-ink);
+  @include hover { background: var(--c-primary-soft); }
+}
+.ghost {
+  background: transparent; color: var(--c-ink); border-color: var(--c-line);
+  @include hover { border-color: var(--c-ink); }
+}
+.ghostDark {
+  background: rgb(255 255 255 / .04); color: var(--c-on-dark); border-color: rgb(255 255 255 / .16);
+  @include hover { border-color: rgb(255 255 255 / .5); background: rgb(255 255 255 / .08); }
+}
+.sm { min-height: 40px; padding: 0 16px; font-size: .875rem; }

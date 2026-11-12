@@ -1,0 +1,20 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.wrap { padding-top: var(--section-y); }
+.panel {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; gap: 28px; align-items: center;
+  padding: clamp(36px, 6vw, 72px); border-radius: var(--radius-lg);
+  background: var(--c-primary); color: #fff;
+  box-shadow: 0 40px 80px -40px rgb(44 91 140 / .7);
+  @include up($bp-lg) { grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }
+}
+.panel h2 { color: #fff; font-size: clamp(2rem, 1.3rem + 3vw, 3.5rem); letter-spacing: -0.03em; }
+.panel p { margin-top: 16px; max-width: 52ch; color: rgb(255 255 255 / .82); }
+.eyebrow { color: #fff; &::before { background: var(--c-accent); } }
+.arcs { position: absolute; z-index: -1; right: -120px; top: -160px; width: 560px; height: 560px; pointer-events: none; opacity: .5; }
+.arcs circle { fill: none; stroke: rgb(255 255 255 / .16); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px;
+  > a { flex: 1 1 auto; @include up($bp-sm) { flex: 0 0 auto; } }
+}

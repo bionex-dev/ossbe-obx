@@ -1,0 +1,51 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.footer { position: relative; background: var(--c-ink); color: var(--c-on-dark-muted); overflow: hidden; }
+.footer::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgb(255 255 255 / .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / .035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse at 15% 0%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 15% 0%, #000 0%, transparent 70%);
+}
+.ask {
+  position: relative; display: grid; gap: 24px; align-items: center; padding-block: 56px;
+  border-bottom: 1px solid var(--c-ink-3);
+  @include up($bp-md) { grid-template-columns: 1fr auto; }
+  h2 { color: #fff; font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem); }
+  p { margin-top: 8px; }
+}
+.grid {
+  position: relative; display: grid; gap: 40px; padding-block: 56px;
+  @include up($bp-md) { grid-template-columns: 1fr 1fr; }
+  @include up($bp-lg) { grid-template-columns: 1.4fr .7fr 1.3fr; gap: 64px; }
+}
+.title { font-family: var(--f-display); font-weight: 800; color: #fff; font-size: 1.0625rem; letter-spacing: .01em; }
+.about { margin-top: 16px; font-size: .9375rem; max-width: 46ch; }
+.more {
+  color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--c-accent);
+  @include focus-ring;
+}
+.h { font-family: var(--f-display); font-weight: 700; color: #fff; font-size: .9375rem; margin-bottom: 14px; }
+.list { display: grid; gap: 4px; }
+.list a {
+  display: inline-block; padding: 6px 0; transition: color .2s, transform .25s var(--ease);
+  @include hover { color: #fff; transform: translateX(3px); }
+  @include focus-ring;
+}
+.card { border: 1px solid var(--c-ink-3); background: var(--c-ink-2); border-radius: var(--radius); padding: 22px; display: grid; gap: 14px; }
+.row {
+  display: flex; align-items: center; gap: 12px; font-size: .9375rem; color: var(--c-on-dark); overflow-wrap: anywhere;
+  transition: color .2s;
+  svg { flex: none; width: 18px; height: 18px; color: var(--c-accent); }
+  @include hover { color: #fff; }
+  @include focus-ring;
+}
+.mapRow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.bottom {
+  position: relative; border-top: 1px solid var(--c-ink-3); padding-block: 24px; font-size: .875rem;
+  display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between;
+}
