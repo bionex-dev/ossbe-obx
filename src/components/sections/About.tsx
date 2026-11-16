@@ -13,7 +13,7 @@ const phrases = [
   "hit business objectives",
   "proven track record",
   "accurate, non-biased advice",
-  "low cost business utilities",
+  "low-cost business utilities",
 ];
 
 export function About() {

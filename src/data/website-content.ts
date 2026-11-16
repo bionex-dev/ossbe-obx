@@ -9,9 +9,9 @@ export const business = {
   category: "Economic Consultant",
   categoryLabel: "ECONOMIC CONSULTANT",
   description:
-    "Osbee Solutions is a commercial consultant, based in India. We have one simple aim; to save our customers money, while building a company where our employees would be proud to work for. We build trusting relationships with you at the centre, understanding your needs and providing solutions that are designed to save you money and hit business objectives. We have a proven track record for getting you results. We will use our industry experience to provide you with accurate, non-biased advice and low cost business utilities.",
+    "Osbee Solutions is a commercial consultant, based in India. We have one simple aim: to save our customers money, while building a company our employees would be proud to work for. We build trusting relationships with you at the centre, understanding your needs and providing solutions that are designed to save you money and hit business objectives. We have a proven track record of getting you results. We will use our industry experience to provide you with accurate, non-biased advice and low-cost business utilities.",
   // Verbatim sentence from the description, used as hero lead.
-  aim: "We have one simple aim; to save our customers money, while building a company where our employees would be proud to work for.",
+  aim: "We have one simple aim: to save our customers money, while building a company our employees would be proud to work for.",
 } as const;
 
 export const contact = {
@@ -43,7 +43,7 @@ export const glance = {
   whatWeDo: "Economic Consultant",
   hoursLabel: "Business hours",
   // Updated to the Google Business Profile hours on 2026-11-12 (owner request). Original site said "Monday-Friday: 24 hours".
-  hoursSummary: "Monday-Friday: 1–9:30 pm",
+  hoursSummary: "Monday–Friday: 1–9:30 pm",
   viewAllDays: "View all days",
 };
 
@@ -72,10 +72,8 @@ export const rating = {
   readAll: "Read all reviews on Google",
 };
 
-// Source shows this review twice (carousel duplicate); only one unique review exists.
-export const reviews = [
-  { author: "max dawson", date: "April 21, 2024", rating: 5, text: "Fast growing company hope to work with you again." },
-];
+// The single Google review (max dawson, April 21, 2024) is no longer shown on the site, at the owner's request (2026-11-16).
+// Only the rating is displayed.
 
 export const gallery = {
   heading: "Our photo gallery",
@@ -131,7 +129,7 @@ export const cta = {
 };
 
 export const floatingCta = {
-  title: "Looking for the right Economic Consultant?",
+  title: "Looking for the right economic consultant?",
   text: "Ask about anything — options, pricing, availability or more.",
   button: "Contact us",
 };
@@ -157,9 +155,9 @@ export const privacy = {
       p: "We may use the information we collect to:",
       list: [
         "Provide, operate, and improve our website and services.",
-        "Respond to inquiries or customer support requests.",
+        "Respond to enquiries or customer support requests.",
         "Send updates, offers, or marketing communications (you can opt out anytime).",
-        "Analyze website traffic and usage patterns.",
+        "Analyse website traffic and usage patterns.",
       ],
     },
     {
@@ -176,7 +174,7 @@ export const privacy = {
     },
   ] as { h: string; p?: string; list?: string[] }[],
   rightsH: "Your Rights",
-  rights: "You may request access, correction, or deletion of your personal data by contacting us at",
+  rights: "You may request access to, correction of, or deletion of your personal data by contacting us at",
   updatesH: "Updates to This Policy",
   updates:
     "We may update this Privacy Policy from time to time. Changes will be posted on this page with the updated effective date.",

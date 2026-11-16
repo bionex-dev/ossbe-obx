@@ -4,7 +4,7 @@ import { Glance } from "@/components/sections/Glance";
 import { About } from "@/components/sections/About";
 import { Services } from "@/components/sections/Services";
 import { Gallery } from "@/components/sections/Gallery";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { Rating } from "@/components/sections/Rating";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Contact } from "@/components/sections/Contact";
 import { Hours } from "@/components/sections/Hours";
@@ -20,7 +20,7 @@ export default function Home() {
       <About />
       <Services />
       <Gallery />
-      <Testimonials />
+      <Rating />
       <CtaBand />
       <Contact />
       <Hours />

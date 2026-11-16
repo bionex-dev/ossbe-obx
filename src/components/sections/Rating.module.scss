@@ -1,0 +1,69 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.section { position: relative; background: var(--c-ink); color: var(--c-on-dark); overflow: hidden; isolation: isolate; }
+.glow {
+  position: absolute; z-index: -1; width: 760px; height: 760px; left: -260px; bottom: -400px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgb(60 116 173 / .34), transparent);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.section::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: radial-gradient(rgb(255 255 255 / .07) 1px, transparent 1px); background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 85% 30%, #000, transparent 70%);
+  mask-image: radial-gradient(ellipse 60% 70% at 85% 30%, #000, transparent 70%);
+}
+.grid { display: grid; gap: 48px; align-items: center;
+  @include up($bp-lg) { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 80px; }
+}
+.summary { display: grid; gap: 20px; justify-items: start; }
+.summary h2 { color: #fff; }
+.scoreRow { display: flex; align-items: flex-end; gap: 18px; }
+.score {
+  font-family: var(--f-display); font-weight: 800; line-height: .9; letter-spacing: -0.05em; font-size: clamp(4.5rem, 3rem + 6vw, 7.5rem);
+  background: linear-gradient(180deg, #fff 40%, #9fb8d4); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.scoreMeta { display: grid; gap: 8px; padding-bottom: 10px; font-size: .9375rem; color: var(--c-on-dark-muted); }
+.basis { color: var(--c-on-dark-muted); }
+.link {
+  display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: #fff; padding-bottom: 4px;
+  background: linear-gradient(var(--c-accent), var(--c-accent)) 0 100% / 100% 1px no-repeat;
+  transition: background-size .5s var(--ease);
+  svg { width: 16px; height: 16px; transition: transform .35s var(--ease); }
+  @include hover { background-size: 0% 1px; background-position: 100% 100%; svg { transform: translate(3px, -3px); } }
+  @include focus-ring;
+}
+
+.card {
+  position: relative; overflow: hidden; padding: clamp(28px, 4vw, 40px); border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, var(--c-ink-2), rgb(18 34 58 / .6)); border: 1px solid var(--c-ink-3);
+  @include hover { --lift: -4px; border-color: rgb(143 179 217 / .35); box-shadow: 0 30px 60px -30px rgb(0 0 0 / .6); }
+}
+.cardHead { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--c-ink-3); }
+.cardLabel { font-family: var(--f-display); font-size: .8125rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c-on-dark-muted); }
+.bars { display: grid; gap: 14px; margin-top: 22px; }
+.row { display: grid; grid-template-columns: 36px 1fr 48px; align-items: center; gap: 14px; }
+.rowLabel { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums;
+  svg { color: var(--c-accent); }
+}
+.track { position: relative; height: 10px; border-radius: 999px; background: rgb(255 255 255 / .08); overflow: hidden; }
+.fill {
+  position: absolute; inset: 0; border-radius: inherit; transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--c-accent), #e3c27e);
+  transform: scaleX(var(--v)); transition: transform 1.4s var(--ease); transition-delay: calc(var(--i) * 120ms + 350ms);
+}
+/* sheen sweeping along the filled bar */
+.fill::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(255 255 255 / .55), transparent);
+  transform: translateX(-100%); animation: barSheen 3.2s ease-in-out 2s infinite;
+}
+:global(.js) [data-reveal]:not(:global(.is-in)) .fill { transform: scaleX(0); }
+.pct { text-align: right; font-size: .875rem; font-weight: 600; color: var(--c-on-dark-muted); font-variant-numeric: tabular-nums; }
+.source {
+  display: inline-block; margin-top: 22px; font-size: .75rem; color: var(--c-on-dark-muted); text-decoration: underline; text-underline-offset: 3px;
+  @include hover { color: #fff; }
+  @include focus-ring;
+}
+@keyframes drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(160px, -90px, 0) scale(1.15); } }
+@keyframes barSheen { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .fill::after { animation: none; display: none; } }

@@ -92,7 +92,7 @@ export function Footer() {
 
       <div className={["container", s.bottom].join(" ")}>
         <p>
-          Copyrights ©{year} {business.name}.
+          Copyright © {year} {business.name}.
         </p>
       </div>
     </footer>

@@ -15,10 +15,10 @@ export const canonical = (path: string) => (hasSiteUrl ? { canonical: path } : u
 /** Original site URL as printed in the source privacy policy; replaced by the production URL when known. */
 export const displayUrl = hasSiteUrl ? siteUrl : "https://osbee-solutions-private.grexa.site";
 
-export const seoTitle = "OSBEE SOLUTIONS PRIVATE LIMITED - Best Economic Consultant Near me";
+export const seoTitle = "OSBEE SOLUTIONS PRIVATE LIMITED - Best Economic Consultant Near Me";
 // First two sentences of the original description, verbatim.
 export const seoDescription =
-  "Osbee Solutions is a commercial consultant, based in India. We have one simple aim; to save our customers money, while building a company where our employees would be proud to work for.";
+  "Osbee Solutions is a commercial consultant, based in India. We have one simple aim: to save our customers money, while building a company our employees would be proud to work for.";
 
 
 export const localBusinessJsonLd = {

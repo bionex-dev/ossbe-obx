@@ -69,3 +69,19 @@ export const services = {
     },
   ],
 };
+
+/**
+ * Rating breakdown shown instead of individual reviews (owner request, 2026-11-16).
+ * The Google listing shows 5.0 from 1 review; an average of 5.0 means every rating is 5 stars.
+ */
+export const ratingSummary = {
+  cardLabel: "Rating breakdown",
+  source: "Rating as listed on Google",
+  breakdown: [
+    { stars: 5, percent: 100 },
+    { stars: 4, percent: 0 },
+    { stars: 3, percent: 0 },
+    { stars: 2, percent: 0 },
+    { stars: 1, percent: 0 },
+  ],
+};

@@ -66,3 +66,33 @@ These changes go beyond the original site, at the owner's request. Review the wo
 **Careers page (new, `/careers`).** Copy is in `src/data/careers-content.ts`. It lists values, teams, the hiring steps and an "Email your CV" button (pre-filled subject). No vacancies, salaries or benefits are claimed. The only quote is verbatim from the original description.
 
 **New UI labels:** "Services", "Careers", "Checking hours…", "Open now / Closes soon / Closed / Opens …", "Hours as listed on Google", "Back to top", "Apply", "Email your CV".
+
+## Update — reviews removed, rating kept (2026-11-16)
+
+At the owner's request, the single Google review ("max dawson", April 21, 2024) is no longer shown anywhere on the site. The reviews section is now a rating section:
+- the 5.0 score (counts up), stars and "1+ reviews"
+- "5.0 / 5 · Based on 1+ Google reviews" and the "Read all reviews on Google" link
+- a rating breakdown: 5★ 100%, 4★–1★ 0%. This follows from the 5.0 average.
+
+## Update — grammar fixes (2026-11-16)
+
+At the owner's request, grammar was corrected across all site text. Three independent proofreaders reviewed it, and a strict editor accepted only real errors, never style preferences. Applied:
+
+| Before | After |
+|---|---|
+| one simple aim; to save | one simple aim: to save (description, hero, careers quote, SEO description) |
+| a company where our employees would be proud to work for | a company our employees would be proud to work for |
+| track record for getting you results | track record of getting you results |
+| low cost business utilities | low-cost business utilities |
+| Monday-Friday: 1–9:30 pm | Monday–Friday: 1–9:30 pm |
+| Looking for the right Economic Consultant? | Looking for the right economic consultant? |
+| Copyrights ©2026 | Copyright © 2026 |
+| …Economic Consultant Near me (page title) | …Economic Consultant Near Me |
+| request access, correction, or deletion of | request access to, correction of, or deletion of |
+| inquiries / Analyze (privacy policy) | enquiries / Analyse (matches the British spelling used elsewhere) |
+| team you’re interested in in the subject line (careers) | name the team you’d like to join in the subject line |
+| "1 stars" (screen-reader text) | "1 star" |
+
+Left unchanged as acceptable style: "non-biased", "availability or more", the comma in "consultant, based in India", and the "-" separator in the hero heading.
+
+Flagged for the owner, not a grammar issue: "You can contact us anytime during the day with your query." sits next to the 1–9:30 pm hours.

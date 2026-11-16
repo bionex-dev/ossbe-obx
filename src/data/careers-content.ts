@@ -38,7 +38,7 @@ export const careers = {
   processEyebrow: "Hiring process",
   processTitle: "Four simple steps.",
   process: [
-    { title: "Apply", text: "Email your CV with the team you’re interested in in the subject line." },
+    { title: "Apply", text: "Email your CV and name the team you’d like to join in the subject line." },
     { title: "Conversation", text: "We get in touch to learn about you and answer your questions." },
     { title: "Interview", text: "Meet the team and talk through a real scenario from the role." },
     { title: "Welcome aboard", text: "Receive your offer and a clear plan for your first month." },
