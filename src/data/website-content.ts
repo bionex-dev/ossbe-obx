@@ -29,7 +29,9 @@ export const contact = {
 export const nav = [
   { label: "Home", href: "/#top" },
   { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
   { label: "Contact", href: "/#contact" },
+  { label: "Careers", href: "/careers" },
 ] as const;
 
 export const footerLinks = [...nav, { label: "Privacy Policy", href: "/privacy-policy" }] as const;
@@ -40,20 +42,21 @@ export const glance = {
   whatWeDoLabel: "What we do",
   whatWeDo: "Economic Consultant",
   hoursLabel: "Business hours",
-  hoursSummary: "Monday-Friday: 24 hours",
+  // Updated to the Google Business Profile hours on 2026-11-12 (owner request). Original site said "Monday-Friday: 24 hours".
+  hoursSummary: "Monday-Friday: 1–9:30 pm",
   viewAllDays: "View all days",
 };
 
 export const hours = {
   title: "Business hours",
   days: [
-    { day: "Monday", value: "24 hours" },
-    { day: "Tuesday", value: "24 hours" },
-    { day: "Wednesday", value: "24 hours" },
-    { day: "Thursday", value: "24 hours" },
-    { day: "Friday", value: "24 hours" },
-    { day: "Saturday", value: "Not provided" },
-    { day: "Sunday", value: "Not provided" },
+    { day: "Monday", value: "1–9:30 pm" },
+    { day: "Tuesday", value: "1–9:30 pm" },
+    { day: "Wednesday", value: "1–9:30 pm" },
+    { day: "Thursday", value: "1–9:30 pm" },
+    { day: "Friday", value: "1–9:30 pm" },
+    { day: "Saturday", value: "Closed" },
+    { day: "Sunday", value: "Closed" },
   ],
   note: "You can contact us anytime during the day with your query.",
 };

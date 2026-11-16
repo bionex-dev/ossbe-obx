@@ -34,6 +34,8 @@
   --gutter: clamp(16px, 4vw, 32px);
   --section-y: clamp(72px, 10vw, 128px);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --nav-h: 72px;
 }
 
@@ -98,4 +100,69 @@ ul { margin: 0; padding: 0; list-style: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .js [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ============ Motion system ============ */
+/* Word-mask reveal for headings: words rise out of a clip with a slight swing */
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .02em .12em; margin: 0 -.02em -.12em; }
+.w > span {
+  display: inline-block; transform-origin: 0 100%;
+  transition: transform 1s var(--ease);
+  transition-delay: calc(var(--w, 0) * 55ms + var(--wd, 0ms));
+}
+.js [data-reveal="words"] { opacity: 1; transform: none; }
+.js [data-reveal="words"]:not(.is-in) .w > span { transform: translate3d(0, 112%, 0) rotate(5deg); }
+
+/* Word-by-word fade for long paragraphs (inline spans, so screen readers read normally) */
+.wf { transition: opacity .8s var(--ease); transition-delay: calc(var(--w, 0) * 11ms + 160ms); }
+.js [data-reveal]:not(.is-in) .wf { opacity: 0; }
+
+/* Eyebrow accent line draws in */
+.eyebrow::before { transform-origin: 0 50%; transition: transform .9s var(--ease) .1s; }
+.js .eyebrow[data-reveal]:not(.is-in)::before { transform: scaleX(0); }
+
+/* Stars pop in one after another when their block reveals */
+.star { transition: transform .6s var(--ease-spring), opacity .3s ease; transition-delay: calc(var(--s, 0) * 75ms + 300ms); }
+.js [data-reveal]:not(.is-in) .star { transform: scale(0) rotate(-40deg); opacity: 0; }
+
+/* Clip-wipe reveal for panels */
+.js [data-reveal="wipe"] { opacity: 1; transform: none; clip-path: inset(0 0 0 0 round var(--radius-lg)); transition: clip-path 1.2s var(--ease-in-out); }
+.js [data-reveal="wipe"]:not(.is-in) { clip-path: inset(10% 10% 10% 10% round var(--radius-lg)); }
+
+/* Infinite loops stop while their section is off screen (toggled by <Interactions />) */
+.is-paused, .is-paused * { animation-play-state: paused !important; }
+
+/* Tilt + glare cards (vars set by <Interactions /> on fine pointers) */
+[data-tilt] {
+  --rx: 0deg; --ry: 0deg; --lift: 0px;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, var(--lift), 0);
+  transition: transform .5s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease), background-color .4s var(--ease);
+}
+[data-tilt].is-tilting { transition: transform .12s linear, box-shadow .4s var(--ease), border-color .4s var(--ease); }
+.glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .4s var(--ease);
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / .16), transparent 45%);
+}
+[data-tilt]:hover .glare { opacity: 1; }
+
+/* Scroll-linked motion: progressive enhancement, never under reduced motion */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-parallax] {
+      animation: parallaxY linear both; animation-timeline: view(); animation-range: cover 0% cover 100%;
+    }
+    [data-spin] { animation: spinScroll linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+  }
+}
+@keyframes parallaxY {
+  from { transform: translate3d(0, calc(var(--px, 40px) * -1), 0) scale(var(--ps, 1)); }
+  to { transform: translate3d(0, var(--px, 40px), 0) scale(var(--ps, 1)); }
+}
+@keyframes spinScroll { from { transform: rotate(-35deg); } to { transform: rotate(35deg); } }
+@keyframes floatY { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -10px, 0); } }
+@keyframes popIn { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] .w > span, .js [data-reveal] .wf, .js [data-reveal] .star { transform: none !important; opacity: 1 !important; }
+  .js [data-reveal="wipe"] { clip-path: none !important; }
+  [data-tilt] { transform: none !important; }
 }

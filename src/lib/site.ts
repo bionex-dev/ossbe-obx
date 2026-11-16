@@ -1,4 +1,5 @@
-import { business, contact, hours } from "@/data/website-content";
+import { business, contact } from "@/data/website-content";
+import { services } from "@/data/owner-content";
 
 /** Production origin. Set NEXT_PUBLIC_SITE_URL on deploy; Vercel's production URL is used as a fallback. */
 const envUrl =
@@ -19,7 +20,6 @@ export const seoTitle = "OSBEE SOLUTIONS PRIVATE LIMITED - Best Economic Consult
 export const seoDescription =
   "Osbee Solutions is a commercial consultant, based in India. We have one simple aim; to save our customers money, while building a company where our employees would be proud to work for.";
 
-const weekdays = hours.days.filter((d) => d.value === "24 hours").map((d) => d.day);
 
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",
@@ -32,11 +32,23 @@ export const localBusinessJsonLd = {
   telephone: "+91-9088200195",
   email: contact.email,
   hasMap: contact.maps,
-  knowsAbout: [business.category],
-  address: { "@type": "PostalAddress", addressCountry: "IN" },
-  // Coordinates from the owner-supplied Google Maps link (maps.app.goo.gl/V8Gjd35ecshd6Uu46).
+  knowsAbout: [business.category, ...services.items.map((i) => i.title)],
+  // Address, coordinates and hours as listed on the Google Business Profile (checked 2026-11-12).
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "14, Syed Amir Ali Ave, Lower Range, Beck Bagan, Ballygunge",
+    addressLocality: "Kolkata",
+    addressRegion: "West Bengal",
+    postalCode: "700017",
+    addressCountry: "IN",
+  },
   geo: { "@type": "GeoCoordinates", latitude: 22.5417345, longitude: 88.3654756 },
   openingHoursSpecification: [
-    { "@type": "OpeningHoursSpecification", dayOfWeek: weekdays, opens: "00:00", closes: "23:59" },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "13:00",
+      closes: "21:30",
+    },
   ],
 };

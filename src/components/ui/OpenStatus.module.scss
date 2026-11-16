@@ -1,0 +1,16 @@
+.badge {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 28px; padding: 0 12px 0 10px; border-radius: 999px;
+  font-size: .8125rem; font-weight: 600; color: var(--c-text-strong); background: var(--c-bg); border: 1px solid var(--c-line);
+  opacity: .6; transition: opacity .5s var(--ease);
+}
+.ready { opacity: 1; }
+.dark { color: var(--c-on-dark); background: rgb(255 255 255 / .06); border-color: rgb(255 255 255 / .12); }
+.dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--c-muted); flex: none; }
+.open { background: #12b76a; }
+.soon { background: #f79009; }
+.closed { background: #d92d20; }
+.open::after, .soon::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit;
+  animation: ping 2s cubic-bezier(0, 0, .2, 1) infinite;
+}
+@keyframes ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }

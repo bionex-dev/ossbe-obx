@@ -9,7 +9,7 @@ Automated check against the production build: every source string was searched f
 
 | Page | Source strings | Found verbatim |
 |---|---|---|
-| `/` (merges source home, about, contact) | 63 | 63 |
+| `/` (merges source home, about, contact) | 65 | 65 |
 | `/privacy-policy` | 24 | 24 |
 
 Interactive-only text verified in the browser: lightbox `1 / 1`, `Previous photo`, `Next photo`; `Business hours: Monday-Friday: 24 hours` (mobile menu).
@@ -46,3 +46,23 @@ Interactive-only text verified in the browser: lightbox `1 / 1`, `Previous photo
 
 Street address, services beyond "Economic Consultant", certifications, statistics beyond the Google rating, more photos, more reviews.
 Structured data uses only verified facts: name, description, phone, email, Maps link, country (IN, from "based in India"), Mon–Fri 24-hour hours, and map coordinates from the supplied Maps link.
+
+## Update — owner requests (2026-11-12)
+
+These changes go beyond the original site, at the owner's request. Review the wording before launch.
+
+**Hours now follow Google.** The Google Business Profile (checked 2026-11-12) lists **Monday–Friday 1–9:30 pm, Saturday–Sunday Closed**. This replaces the original site's "Monday-Friday: 24 hours" / "Not provided". A live badge ("Open now", "Closes soon", "Closed · Opens …") is calculated in India time. The original note "You can contact us anytime during the day with your query." is kept as written.
+
+**Address added from Google:** 14, Syed Amir Ali Ave, Lower Range, Beck Bagan, Ballygunge, Kolkata, West Bengal 700017. It appears in the contact card, hours card and footer, and in the structured data with the new hours.
+
+**Services section (new).** The owner named campaigns and AI calling. Six services are listed in `src/data/owner-content.ts`:
+1. Economic & Commercial Consulting
+2. Campaign Management
+3. AI-Powered Calling
+4. Lead Generation & Appointment Setting
+5. Customer Support Outsourcing
+6. Market Research & Data
+
+**Careers page (new, `/careers`).** Copy is in `src/data/careers-content.ts`. It lists values, teams, the hiring steps and an "Email your CV" button (pre-filled subject). No vacancies, salaries or benefits are claimed. The only quote is verbatim from the original description.
+
+**New UI labels:** "Services", "Careers", "Checking hours…", "Open now / Closes soon / Closed / Opens …", "Hours as listed on Google", "Back to top", "Apply", "Email your CV".

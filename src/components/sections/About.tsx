@@ -1,7 +1,9 @@
 import { ArrowUpRight, Quote } from "lucide-react";
 import { about, business, contact, cta, rating } from "@/data/website-content";
 import { Button } from "@/components/ui/Button";
+import { SplitWords } from "@/components/ui/SplitWords";
 import { Stars } from "@/components/ui/Stars";
+import { WordFade } from "@/components/ui/WordFade";
 import s from "./About.module.scss";
 
 // Verbatim substrings of the description that get a visual highlight. The text itself is unchanged.
@@ -14,21 +16,6 @@ const phrases = [
   "low cost business utilities",
 ];
 
-function highlight(text: string) {
-  // Phrases contain no regex metacharacters, so they can be joined directly.
-  const re = new RegExp("(" + phrases.join("|") + ")");
-  let m = 0;
-  return text.split(re).map((part, i) =>
-    phrases.includes(part) ? (
-      <span key={i} className={s.mark} style={{ ["--m" as string]: m++ }}>
-        {part}
-      </span>
-    ) : (
-      part
-    ),
-  );
-}
-
 export function About() {
   return (
     <section id="about" className="section" aria-labelledby="about-title">
@@ -37,8 +24,10 @@ export function About() {
           <span className="eyebrow" data-reveal>
             {about.eyebrow}
           </span>
-          <h2 id="about-title" className="h2" data-reveal style={{ ["--d" as string]: 1 }}>
-            {about.title}
+          <h2 id="about-title" className="h2" data-reveal="words" aria-label={about.title}>
+            <span aria-hidden>
+              <SplitWords text={about.title} />
+            </span>
           </h2>
           <div className={s.rating} data-reveal style={{ ["--d" as string]: 2 }}>
             <Stars value={rating.score} />
@@ -53,9 +42,13 @@ export function About() {
             </Button>
           </div>
         </div>
-        <div className={s.body} data-reveal style={{ ["--d" as string]: 1 }}>
-          <Quote className={s.quote} aria-hidden strokeWidth={1.25} />
-          <p className={s.text}>{highlight(business.description)}</p>
+        <div className={s.body} data-reveal="fade">
+          <span className={s.quoteWrap} data-parallax style={{ ["--px" as string]: "28px" }} aria-hidden>
+            <Quote className={s.quote} strokeWidth={1.25} />
+          </span>
+          <p className={s.text}>
+            <WordFade text={business.description} phrases={phrases} markClass={s.mark} />
+          </p>
         </div>
       </div>
     </section>

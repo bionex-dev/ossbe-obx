@@ -1,0 +1,17 @@
+@use "../../styles/mixins" as *;
+
+.btn {
+  position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 40;
+  width: 52px; height: 52px; border-radius: 50%; border: 0; display: grid; place-items: center;
+  background: var(--c-ink); color: #fff; box-shadow: var(--shadow);
+  opacity: 0; visibility: hidden; transform: translate3d(0, 16px, 0) scale(.8);
+  transition: opacity .4s var(--ease), transform .5s var(--ease-spring), visibility 0s .4s, background-color .3s;
+  @include focus-ring;
+  @include hover { background: var(--c-primary); .icon { transform: translateY(-3px); } }
+}
+.show { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.ring { position: absolute; inset: 2px; width: calc(100% - 4px); height: calc(100% - 4px); transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 2.5; }
+.track { stroke: rgb(255 255 255 / .12); }
+.bar { stroke: var(--c-accent); stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0)); }
+.icon { width: 20px; height: 20px; transition: transform .35s var(--ease); }

@@ -4,6 +4,7 @@ import { siteUrl } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: siteUrl + "/", changeFrequency: "monthly", priority: 1 },
+    { url: siteUrl + "/careers", changeFrequency: "monthly", priority: 0.6 },
     { url: siteUrl + "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
   ];
 }

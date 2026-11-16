@@ -3,6 +3,8 @@ import { Inter, Manrope } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { RevealObserver } from "@/components/ui/RevealObserver";
+import { Interactions } from "@/components/ui/Interactions";
+import { BackToTop } from "@/components/ui/BackToTop";
 import { business } from "@/data/website-content";
 import { seoDescription, seoTitle, siteUrl } from "@/lib/site";
 import "./globals.scss";
@@ -42,6 +44,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <RevealObserver />
+        <Interactions />
+        <BackToTop />
       </body>
     </html>
   );

@@ -1,12 +1,10 @@
 @use "../../styles/mixins" as *;
 @use "../../styles/variables" as *;
 
-.footer { position: relative; background: var(--c-ink); color: var(--c-on-dark-muted); overflow: hidden; }
+.footer { position: relative; background: var(--c-ink); color: var(--c-on-dark-muted); overflow: hidden; isolation: isolate; }
 .footer::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgb(255 255 255 / .035) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / .035) 1px, transparent 1px);
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(rgb(255 255 255 / .035) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .035) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse at 15% 0%, #000 0%, transparent 70%);
   mask-image: radial-gradient(ellipse at 15% 0%, #000 0%, transparent 70%);
@@ -25,27 +23,39 @@
 }
 .title { font-family: var(--f-display); font-weight: 800; color: #fff; font-size: 1.0625rem; letter-spacing: .01em; }
 .about { margin-top: 16px; font-size: .9375rem; max-width: 46ch; }
-.more {
-  color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--c-accent);
-  @include focus-ring;
-}
+.more { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--c-accent); @include focus-ring; }
 .h { font-family: var(--f-display); font-weight: 700; color: #fff; font-size: .9375rem; margin-bottom: 14px; }
 .list { display: grid; gap: 4px; }
 .list a {
-  display: inline-block; padding: 6px 0; transition: color .2s, transform .25s var(--ease);
-  @include hover { color: #fff; transform: translateX(3px); }
+  position: relative; display: inline-block; padding: 6px 0; transition: color .25s, transform .35s var(--ease);
+  &::after { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: var(--c-accent); transform: scaleX(0); transform-origin: 100% 50%; transition: transform .45s var(--ease); }
+  @include hover { color: #fff; transform: translateX(4px); &::after { transform: scaleX(1); transform-origin: 0 50%; } }
   @include focus-ring;
 }
 .card { border: 1px solid var(--c-ink-3); background: var(--c-ink-2); border-radius: var(--radius); padding: 22px; display: grid; gap: 14px; }
 .row {
-  display: flex; align-items: center; gap: 12px; font-size: .9375rem; color: var(--c-on-dark); overflow-wrap: anywhere;
-  transition: color .2s;
-  svg { flex: none; width: 18px; height: 18px; color: var(--c-accent); }
-  @include hover { color: #fff; }
+  display: flex; align-items: flex-start; gap: 12px; font-size: .9375rem; line-height: 1.5; color: var(--c-on-dark); overflow-wrap: anywhere;
+  transition: color .2s, transform .35s var(--ease);
+  svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--c-accent); transition: transform .45s var(--ease-spring); }
+  @include hover { color: #fff; transform: translateX(3px); svg { transform: scale(1.18) rotate(-8deg); } }
   @include focus-ring;
 }
 .mapRow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+
+/* oversized outlined wordmark that rises letter by letter */
+.wordmark {
+  position: relative; display: flex; justify-content: space-between; padding-inline: var(--gutter);
+  max-width: calc(var(--container) + var(--gutter) * 2); margin: 8px auto -0.18em;
+  font-family: var(--f-display); font-weight: 800; line-height: .9; letter-spacing: -0.04em;
+  font-size: clamp(5rem, 22vw, 18rem); color: transparent;
+  -webkit-text-stroke: 1px rgb(143 179 217 / .22);
+  user-select: none; pointer-events: none;
+}
+.letter { display: inline-block; overflow: hidden; padding-top: .04em;
+  span { display: inline-block; transition: transform 1.2s var(--ease); transition-delay: calc(var(--i) * 90ms + 100ms); }
+}
+:global(.js) .wordmark:not(:global(.is-in)) .letter span { transform: translate3d(0, 105%, 0); }
 .bottom {
   position: relative; border-top: 1px solid var(--c-ink-3); padding-block: 24px; font-size: .875rem;
-  display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between;
+  display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; background: var(--c-ink);
 }

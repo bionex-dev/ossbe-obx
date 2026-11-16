@@ -6,15 +6,22 @@
   position: relative; overflow: hidden; isolation: isolate;
   display: grid; gap: 28px; align-items: center;
   padding: clamp(36px, 6vw, 72px); border-radius: var(--radius-lg);
-  background: var(--c-primary); color: #fff;
+  background: radial-gradient(120% 140% at 100% 0%, #3a6c9f 0%, var(--c-primary) 45%, #23507d 100%); color: #fff;
   box-shadow: 0 40px 80px -40px rgb(44 91 140 / .7);
   @include up($bp-lg) { grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }
 }
-.panel h2 { color: #fff; font-size: clamp(2rem, 1.3rem + 3vw, 3.5rem); letter-spacing: -0.03em; }
-.panel p { margin-top: 16px; max-width: 52ch; color: rgb(255 255 255 / .82); }
-.eyebrow { color: #fff; &::before { background: var(--c-accent); } }
-.arcs { position: absolute; z-index: -1; right: -120px; top: -160px; width: 560px; height: 560px; pointer-events: none; opacity: .5; }
+.panel h2 { margin-top: 16px; color: #fff; font-size: clamp(2rem, 1.3rem + 3vw, 3.5rem); letter-spacing: -0.03em; }
+.lead { margin-top: 16px; max-width: 52ch; color: rgb(255 255 255 / .86); transition: opacity .9s var(--ease) .5s, transform .9s var(--ease) .5s; }
+.panel .eyebrow { color: #fff; transition: opacity .8s var(--ease) .3s;
+  &::before { background: var(--c-accent); transition: transform .9s var(--ease) .45s; }
+}
+:global(.js) .panel:not(:global(.is-in)) .lead { opacity: 0; transform: translateY(14px); }
+:global(.js) .panel:not(:global(.is-in)) .eyebrow { opacity: 0; }
+:global(.js) .panel:not(:global(.is-in)) .eyebrow::before { transform: scaleX(0); }
+.arcs { position: absolute; z-index: -1; right: -120px; top: -160px; width: 560px; height: 560px; pointer-events: none; opacity: .55; }
 .arcs circle { fill: none; stroke: rgb(255 255 255 / .16); }
-.actions { display: flex; flex-wrap: wrap; gap: 12px;
+.arcs .dashed { stroke: rgb(255 255 255 / .3); stroke-dasharray: 2 10; stroke-linecap: round; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; transition: opacity .9s var(--ease) .7s, transform .9s var(--ease) .7s;
   > a { flex: 1 1 auto; @include up($bp-sm) { flex: 0 0 auto; } }
 }
+:global(.js) .panel:not(:global(.is-in)) .actions { opacity: 0; transform: translateY(14px); }

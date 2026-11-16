@@ -1,6 +1,8 @@
 import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { business, contact, contactPage, floatingCta, footer, footerLinks } from "@/data/website-content";
+import { google } from "@/data/owner-content";
 import { Button } from "@/components/ui/Button";
+import { SplitWords } from "@/components/ui/SplitWords";
 import s from "./Footer.module.scss";
 
 // Source footer shows a truncated description followed by "Read more"; we cut at a sentence boundary instead of mid-word.
@@ -12,11 +14,15 @@ export function Footer() {
   return (
     <footer className={s.footer}>
       <div className={["container", s.ask].join(" ")}>
-        <div data-reveal>
-          <h2>{floatingCta.title}</h2>
-          <p>{floatingCta.text}</p>
+        <div>
+          <h2 data-reveal="words" aria-label={floatingCta.title}>
+            <span aria-hidden>
+              <SplitWords text={floatingCta.title} />
+            </span>
+          </h2>
+          <p data-reveal style={{ ["--d" as string]: 2 }}>{floatingCta.text}</p>
         </div>
-        <div data-reveal style={{ ["--d" as string]: 1 }}>
+        <div data-reveal style={{ ["--d" as string]: 3 }}>
           <Button href={contact.whatsapp} external variant="light">
             {floatingCta.button} <ArrowUpRight aria-hidden />
           </Button>
@@ -24,7 +30,7 @@ export function Footer() {
       </div>
 
       <div className={["container", s.grid].join(" ")}>
-        <div>
+        <div data-reveal>
           <p className={s.title}>{business.name}</p>
           <p className={s.about}>
             {excerpt}{" "}
@@ -34,7 +40,7 @@ export function Footer() {
             </a>
           </p>
         </div>
-        <nav aria-label="Footer">
+        <nav aria-label="Footer" data-reveal style={{ ["--d" as string]: 1 }}>
           <p className={s.h}>{footer.quickLinks}</p>
           <ul className={s.list}>
             {footerLinks.map((l) => (
@@ -44,7 +50,7 @@ export function Footer() {
             ))}
           </ul>
         </nav>
-        <section aria-labelledby="footer-contact">
+        <section aria-labelledby="footer-contact" data-reveal style={{ ["--d" as string]: 2 }}>
           <p className={s.h} id="footer-contact">
             {footer.contactUs}
           </p>
@@ -59,6 +65,9 @@ export function Footer() {
             <a className={s.row} href={"mailto:" + contact.email}>
               <Mail aria-hidden /> {contact.email}
             </a>
+            <a className={s.row} href={contact.maps} target="_blank" rel="noopener noreferrer">
+              <MapPin aria-hidden /> <span>{google.address}</span>
+            </a>
             <div className={s.mapRow}>
               <Button href={contact.directions} external size="sm" variant="ghostDark">
                 <MapPin aria-hidden /> {contactPage.getDirections}
@@ -71,6 +80,14 @@ export function Footer() {
             </div>
           </div>
         </section>
+      </div>
+
+      <div className={s.wordmark} data-reveal="fade" aria-hidden>
+        {"OSBEE".split("").map((ch, i) => (
+          <span key={i} className={s.letter}>
+            <span style={{ ["--i" as string]: i }}>{ch}</span>
+          </span>
+        ))}
       </div>
 
       <div className={["container", s.bottom].join(" ")}>

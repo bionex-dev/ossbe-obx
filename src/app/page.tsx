@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Glance } from "@/components/sections/Glance";
 import { About } from "@/components/sections/About";
+import { Services } from "@/components/sections/Services";
 import { Gallery } from "@/components/sections/Gallery";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <Glance />
       <About />
+      <Services />
       <Gallery />
       <Testimonials />
       <CtaBand />

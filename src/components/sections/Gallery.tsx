@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Expand, Images, X } from "lucide-react";
 import { business, gallery } from "@/data/website-content";
+import { SplitWords } from "@/components/ui/SplitWords";
 import s from "./Gallery.module.scss";
 
 export function Gallery() {
@@ -55,8 +56,10 @@ export function Gallery() {
           <span className="eyebrow" data-reveal>
             {business.name}
           </span>
-          <h2 id="gallery-title" className="h2" data-reveal style={{ ["--d" as string]: 1 }}>
-            {gallery.heading}
+          <h2 id="gallery-title" className="h2" data-reveal="words" aria-label={gallery.heading}>
+            <span aria-hidden>
+              <SplitWords text={gallery.heading} />
+            </span>
           </h2>
           <p className={s.caption} data-reveal style={{ ["--d" as string]: 2 }}>
             {photos[0].caption}
@@ -70,14 +73,16 @@ export function Gallery() {
 
         <div className={s.clip} data-reveal="fade">
           <button type="button" className={s.tile} onClick={() => open(0)} aria-haspopup="dialog" aria-label={"Open " + photos[0].alt}>
-            <Image
-              src={photos[0].src}
-              alt={photos[0].alt}
-              width={photos[0].width}
-              height={photos[0].height}
-              sizes="(min-width: 1024px) 680px, 100vw"
-              quality={85}
-            />
+            <span className={s.parallax} data-parallax style={{ ["--px" as string]: "22px", ["--ps" as string]: 1.14 }}>
+              <Image
+                src={photos[0].src}
+                alt={photos[0].alt}
+                width={photos[0].width}
+                height={photos[0].height}
+                sizes="(min-width: 1024px) 680px, 100vw"
+                quality={85}
+              />
+            </span>
             <span className={s.tileLabel}>{photos[0].caption}</span>
             <span className={s.zoom} aria-hidden>
               <Expand />
